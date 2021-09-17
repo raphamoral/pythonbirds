@@ -39,32 +39,32 @@ O   L
     >>> # Testando Direcao
     >>> direcao = Direcao()
     >>> direcao.valor
-    'Norte'
+    'NORTE'
     >>> direcao.girar_a_direita()
     >>> direcao.valor
-    'Leste'
+    'LESTE'
     >>> direcao.girar_a_direita()
     >>> direcao.valor
     'Sul'
     >>> direcao.girar_a_direita()
     >>> direcao.valor
-    'Oeste'
+    'OESTE'
     >>> direcao.girar_a_direita()
     >>> direcao.valor
-    'Norte'
+    'NORTE'
     >>> direcao.girar_a_esquerda()
     >>> direcao.valor
-    'Oeste'
+    'OESTE'
     >>> direcao.girar_a_esquerda()
     >>> direcao.valor
     'Sul'
     >>> direcao.girar_a_esquerda()
     >>> direcao.valor
-    'Leste'
+    'LESTE'
     >>> direcao.girar_a_esquerda()
     >>> direcao.valor
-    'Norte'
-    >>> carro = Carro(direcao, motor)
+    'NORTE'
+    >>> carro = Carro(motor,direcao)
     >>> carro.calcular_velocidade()
     0
     >>> carro.acelerar()
@@ -77,100 +77,68 @@ O   L
     >>> carro.calcular_velocidade()
     0
     >>> carro.calcular_direcao()
-    'Norte'
+    'NORTE'
     >>> carro.girar_a_direita()
     >>> carro.calcular_direcao()
-    'Leste'
+    'LESTE'
     >>> carro.girar_a_esquerda()
     >>> carro.calcular_direcao()
-    'Norte'
+    'NORTE'
     >>> carro.girar_a_esquerda()
     >>> carro.calcular_direcao()
-    'Oeste'
+    'OESTE'
 """
 
-
-    class carro:
-        bussola = (Norte, Leste, Sul, Oeste)
-        def Motor(self,velocidade:float,):
-            self.velocidade = velocidade
-            def acelerar(self):
-
-                self.velocidade+=1
-                print(f'O carro está freiando e a velocidade:{self.velocidade}')
- #           else:
-#                self.velocidade+=1
-#                print(f'O carro está acelerando e a velocidade :{self.velocidade}')
-#
-#        def direcao(self,direcao,posicao):
-#            self.direcao=direcao
-#            self.posicao=posicao
-
-NORTE='Norte'
-SUL='Leste'
-OESTE='Oeste'
-LESTE='Leste'
-class Motor:
-    def __init__(self):
-        self.velocidade=0
+NORTE = 'NORTE'
+LESTE = 'LESTE'
+SUL ='Sul'
+OESTE = 'OESTE' or 'Oeste'
+class Carro:
+    def __init__(self, motor, direcao):
+        self.direcao = direcao
+        self.motor = motor
+    def calcular_velocidade (self):
+       return self.motor.velocidade
 
     def acelerar(self):
-        self.velocidade+=1
+        return self.motor.acelerar()
     def frear(self):
-        self.velocidade-=2
-        self.velocidade = max(0,self.velocidade)
+        return self.motor.frear()
+    def calcular_direcao(self):
+        return self.direcao.valor
+    def girar_a_esquerda(self):
+        return self.direcao.girar_a_esquerda()
+    def girar_a_direita(self):
+        return self.direcao.girar_a_direita()
+
+
+class Motor:
+    def __init__(self):
+        self.velocidade = 0
+
+    def acelerar(self):
+        self.velocidade += 1
+
+    def frear(self):
+        self.velocidade -= 2
+        self.velocidade = max(0, self.velocidade)
+
+
 class Direcao:
-    rotacao_a_direita_dct={NORTE:LESTE,LESTE:SUL,SUL:OESTE,OESTE:NORTE}
-    rotacao_a_esquerda_dct={NORTE:OESTE,OESTE:SUL,SUL:LESTE,LESTE:NORTE}
+    rotacao_a_direita_dct = {NORTE: LESTE, OESTE: NORTE, LESTE: SUL, SUL: OESTE
+                             }
+    rotacao_a_esquerda_dct = {NORTE: OESTE, LESTE: NORTE, SUL: LESTE, OESTE: SUL
+                              }
+
     def __init__(self):
         self.valor = NORTE
+
     def girar_a_direita(self):
-        self.valor=self.rotacao_a_direita_dct[self.valor]
+        self.valor = self.rotacao_a_direita_dct[self.valor]
+
     def girar_a_esquerda(self):
-        self.valor = self.rotacao_a_esquerda_dct[self.valor]
+        self.valor = self.rotacao_a_esquerda_dct[self.valor
+        ]
 
 
 
-
-
-
-
-
-if __name__ == '__main__':
-    motor= Motor()
-    motor.velocidade
-    motor.velocidade
-    motor.acelerar()
-    motor.velocidade
-
-    motor.acelerar()
-    motor.velocidade
-    motor.acelerar()
-    motor.velocidade
-    motor.frear()
-    direcao=Direcao()
-    direcao.valor
-    direcao.girar_a_direita()
-    direcao.valor
-    direcao.girar_a_direita()
-    direcao.valor
-    direcao.girar_a_direita()
-    direcao.valor
-    direcao.girar_a_direita()
-    direcao.valor
-    direcao.girar_a_direita()
-    direcao.valor
-    direcao.girar_a_esquerda()
-    direcao.valor
-    direcao.girar_a_esquerda()
-    direcao.valor
-    direcao.girar_a_esquerda()
-    direcao.valor
-    direcao.girar_a_esquerda()
-    direcao.valor
-    direcao.girar_a_esquerda()
-    direcao.valor
-    direcao.girar_a_esquerda()
-    direcao.valor
-    carro=Carro(direcao,motor)
-    #carro.calc
