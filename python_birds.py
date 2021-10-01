@@ -6,7 +6,7 @@ import placa_grafica
 fase_exemplo = Fase()
 passaros = [PassaroVermelho(3, 3), PassaroAmarelo(3, 3), PassaroAmarelo(3, 3)]
 porcos = [Porco(78, 1), Porco(70, 1)]
-obstaculos = [Obstaculo(31, 10)]
+obstaculos = [Obstaculo(30, 10)]
 
 fase_exemplo.adicionar_passaro(*passaros)
 fase_exemplo.adicionar_porco(*porcos)
